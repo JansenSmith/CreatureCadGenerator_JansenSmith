@@ -1,3 +1,5 @@
+import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
+
 return new ICadGenerator(){
 
 			@Override
