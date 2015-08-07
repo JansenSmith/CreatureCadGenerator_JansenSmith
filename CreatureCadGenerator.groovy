@@ -1,4 +1,4 @@
-new ICadGenerator(){
+return new ICadGenerator(){
 
 			@Override
 			public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {
