@@ -41,7 +41,11 @@ ICadGenerator cadGen = new ICadGenerator(){
 	@Override 
 	public ArrayList<CSG> generateBody(MobileBase b) {
 		ArrayList<CSG> allCad=new ArrayList<>();
-		CSG r2d2 = servo.clone();
+		double size =40;
+		CSG r2d2 = new Cube(	size,// X dimention
+			size,// Y dimention
+			size//  Z dimention
+			).toCSG()
 		r2d2.setManipulator(b.getRootListener());
 		allCad.add(r2d2);
 		//Grab all of the DH chains on the base
