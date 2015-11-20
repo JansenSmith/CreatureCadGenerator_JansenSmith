@@ -25,7 +25,7 @@ File servoFile = ScriptingEngine.fileFromGit(
 // Load the .CSG from the disk and cache it in memory
 CSG servo  = Vitamins.get(servoFile);
 ICadGenerator cadGen = ICadGenerator(){
-	@Override public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks,boolean printBed ) {
+	@Override public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		int i=0;
 		for(DHLink dh:dhLinks){
