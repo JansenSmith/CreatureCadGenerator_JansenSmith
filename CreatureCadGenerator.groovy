@@ -54,7 +54,7 @@ ICadGenerator cadGen = new ICadGenerator(){
 		return allCad;
 	}
 	@Override 
-	public ArrayList<File> generateStls(MobileBase base,File baseDirForFiles) {
+	public ArrayList<File> generateStls(MobileBase b,File baseDirForFiles) {
 		return null;
 	}
 };
