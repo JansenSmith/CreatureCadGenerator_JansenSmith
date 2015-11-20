@@ -5,6 +5,7 @@ import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR;
 import com.neuronrobotics.sdk.util.ThreadUtil;
 import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
 import org.apache.commons.io.IOUtils;
+import com.neuronrobotics.bowlerstudio.vitamins.*;
 //Create the kinematics model from the xml file describing the D-H compliant parameters. 
 String xmlContent = ScriptingEngine.codeFromGistID("bcb4760a449190206170","CarlTheRobot.xml")[0];
 println "Loading the robot"
