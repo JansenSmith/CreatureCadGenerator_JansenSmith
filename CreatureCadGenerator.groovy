@@ -38,13 +38,13 @@ ICadGenerator cadGen = new ICadGenerator(){
 		return allCad;
 	}
 	@Override 
-	public ArrayList<CSG> generateBody(MobileBase base) {
+	public ArrayList<CSG> generateBody(MobileBase b) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		CSG r2d2 = servo.clone();
-		r2d2.setManipulator(base.getRootListener());
+		r2d2.setManipulator(b.getRootListener());
 		allCad.add(r2d2);
 		//Grab all of the DH chains on the base
-		for(DHParameterKinematics chain:base.getAllDHChains()){
+		for(DHParameterKinematics chain:b.getAllDHChains()){
 			println "Loading limb: "+chain.getScriptingName()
 			// For each limb, generate its cad
 			for(CSG csg: generateCad(chain,false)){
