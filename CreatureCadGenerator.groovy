@@ -23,7 +23,7 @@ File servoFile = ScriptingEngine.fileFromGit(
 // Load the .CSG from the disk and cache it in memory
 CSG servo  = Vitamins.get(servoFile);
 ICadGenerator cadGen = ICadGenerator(){
-	@Override public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {
+	@Override public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks,boolean printBed ) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		int i=0;
 		for(DHLink dh:dhLinks){
@@ -43,7 +43,7 @@ ICadGenerator cadGen = ICadGenerator(){
 		for(DHParameterKinematics chain:base.getAllDHChains()){
 			println "Loading limb: "+chain.getScriptingName()
 			// For each limb, generate its cad
-			for(CSG csg: generateCad(chain)){
+			for(CSG csg: generateCad(chain,false)){
 				allCad.add(csg);// add the cad objects to be passed back
 			}
 		}
