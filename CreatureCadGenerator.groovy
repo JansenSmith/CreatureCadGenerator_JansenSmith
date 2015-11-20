@@ -7,6 +7,7 @@ import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
 import org.apache.commons.io.IOUtils;
 //Create the kinematics model from the xml file describing the D-H compliant parameters. 
 String xmlContent = ScriptingEngine.codeFromGistID("bcb4760a449190206170","CarlTheRobot.xml")[0];
+println "Loading the robot"
 MobileBase base=null;
 if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==null){
 	BowlerStudio.speak("I did not fine a device called CarlTheWalkingRobot. Connecting CarlTheWalkingRobot.");
@@ -15,6 +16,7 @@ if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==nul
 }else{
 	base = (MobileBase)DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot");
 }
+println "Loading STL file"
 // Load an STL file from a git repo
 // Loading a local file also works here
 File servoFile = ScriptingEngine.fileFromGit(
@@ -53,4 +55,5 @@ ICadGenerator cadGen = ICadGenerator(){
 		return null;
 	}
 };
+println "Generating CAD"
 return cadGen.generateBody(base)
