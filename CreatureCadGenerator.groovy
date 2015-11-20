@@ -25,7 +25,8 @@ File servoFile = ScriptingEngine.fileFromGit(
 // Load the .CSG from the disk and cache it in memory
 CSG servo  = Vitamins.get(servoFile);
 ICadGenerator cadGen = ICadGenerator(){
-	@Override public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {
+	@Override 
+	public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		int i=0;
 		for(DHLink dh:dhLinks){
@@ -36,7 +37,8 @@ ICadGenerator cadGen = ICadGenerator(){
 		}
 		return allCad;
 	}
-	@Override public ArrayList<CSG> generateBody(MobileBase base) {
+	@Override 
+	public ArrayList<CSG> generateBody(MobileBase base) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		CSG r2d2 = servo.clone();
 		r2d2.setManipulator(base.getRootListener());
@@ -51,7 +53,8 @@ ICadGenerator cadGen = ICadGenerator(){
 		}
 		return allCad;
 	}
-	@Override public ArrayList<File> generateStls(MobileBase base,File baseDirForFiles) {
+	@Override 
+	public ArrayList<File> generateStls(MobileBase base,File baseDirForFiles) {
 		return null;
 	}
 };
