@@ -48,7 +48,7 @@ ICadGenerator cadGen = new ICadGenerator(){
 		for(DHParameterKinematics chain:b.getAllDHChains()){
 			println "Loading limb: "+chain.getScriptingName()
 			// For each limb, generate its cad
-			for(CSG csg: generateCad(chain,false)){
+			for(CSG csg: generateCad(chain)){
 				allCad.add(csg);// add the cad objects to be passed back
 			}
 		}
