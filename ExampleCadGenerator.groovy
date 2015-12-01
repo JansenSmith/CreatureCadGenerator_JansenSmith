@@ -1,3 +1,15 @@
+import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
+import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
+import org.apache.commons.io.IOUtils;
+import com.neuronrobotics.bowlerstudio.vitamins.*;
+println "Loading STL file"
+// Load an STL file from a git repo
+// Loading a local file also works here
+File servoFile = ScriptingEngine.fileFromGit(
+	"https://github.com/NeuronRobotics/BowlerStudioVitamins.git",
+	"BowlerStudioVitamins/stl/servo/smallservo.stl");
+// Load the .CSG from the disk and cache it in memory
+CSG servo  = Vitamins.get(servoFile);
 return new ICadGenerator(){
 	@Override 
 	public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {

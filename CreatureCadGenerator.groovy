@@ -1,11 +1,6 @@
 import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
-import com.neuronrobotics.sdk.addons.kinematics.DHParameterKinematics;
-import com.neuronrobotics.sdk.addons.kinematics.math.RotationNR
-import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR;
-import com.neuronrobotics.sdk.util.ThreadUtil;
 import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
 import org.apache.commons.io.IOUtils;
-import com.neuronrobotics.bowlerstudio.vitamins.*;
 //Create the kinematics model from the xml file describing the D-H compliant parameters. 
 String xmlContent = ScriptingEngine.codeFromGistID("bcb4760a449190206170","CarlTheRobot.xml")[0];
 println "Loading the robot"
@@ -17,14 +12,7 @@ if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==nul
 }else{
 	base = (MobileBase)DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot");
 }
-println "Loading STL file"
-// Load an STL file from a git repo
-// Loading a local file also works here
-File servoFile = ScriptingEngine.fileFromGit(
-	"https://github.com/NeuronRobotics/BowlerStudioVitamins.git",
-	"BowlerStudioVitamins/stl/servo/smallservo.stl");
-// Load the .CSG from the disk and cache it in memory
-CSG servo  = Vitamins.get(servoFile);
+
 base.setCadEngine("e54cfebe4f55fb0549dd","ExampleCadGenerator.groovy")
 cad = base.getCadEngine();
 File code = ScriptingEngine.fileFromGistID(cad[0],cad[1]);
