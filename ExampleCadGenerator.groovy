@@ -12,7 +12,8 @@ File servoFile = ScriptingEngine.fileFromGit(
 CSG servo  = Vitamins.get(servoFile);
 return new ICadGenerator(){
 	@Override 
-	public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks, boolean toManufacture ) {
+	public ArrayList<CSG> generateCad(DHParameterKinematics d, boolean toManufacture ) {
+		ArrayList<DHLink> dhLinks = d.getChain().getLinks();
 		ArrayList<CSG> allCad=new ArrayList<>();
 		int i=0;
 		for(DHLink dh:dhLinks){
