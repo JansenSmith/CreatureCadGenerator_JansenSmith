@@ -12,7 +12,7 @@ File servoFile = ScriptingEngine.fileFromGit(
 CSG servo  = Vitamins.get(servoFile);
 return new ICadGenerator(){
 	@Override 
-	public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks) {
+	public ArrayList<CSG> generateCad(ArrayList<DHLink> dhLinks, boolean toManufacture ) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		int i=0;
 		for(DHLink dh:dhLinks){
@@ -24,7 +24,7 @@ return new ICadGenerator(){
 		return allCad;
 	}
 	@Override 
-	public ArrayList<CSG> generateBody(MobileBase b) {
+	public ArrayList<CSG> generateBody(MobileBase b, boolean toManufacture ) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		double size =40;
 		CSG r2d2 = new Cube(	size,// X dimention
@@ -42,9 +42,5 @@ return new ICadGenerator(){
 			}
 		}
 		return allCad;
-	}
-	@Override 
-	public ArrayList<File> generateStls(MobileBase b,File baseDirForFiles) {
-		return null;
 	}
 };
