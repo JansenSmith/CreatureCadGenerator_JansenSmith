@@ -19,4 +19,4 @@ File code = ScriptingEngine.fileFromGit(cad[0],cad[1]);
 ICadGenerator cadGen =  (ICadGenerator) ScriptingEngine.inlineScriptRun(code, null,ShellType.GROOVY);
 println "Generating CAD"
 
-return base;
+return null;
