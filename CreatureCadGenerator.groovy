@@ -13,9 +13,9 @@ if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==nul
 	base = (MobileBase)DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot");
 }
 
-base.setCadEngine("e54cfebe4f55fb0549dd","ExampleCadGenerator.groovy")
-cad = base.getCadEngine();
-File code = ScriptingEngine.fileFromGistID(cad[0],cad[1]);
+base.setGitCadEngine(["https://gist.github.com/e54cfebe4f55fb0549dd.git","ExampleCadGenerator.groovy"]as String[])
+cad = base.getGitCadEngine();
+File code = ScriptingEngine.fileFromGit(cad[0],cad[1]);
 ICadGenerator cadGen =  (ICadGenerator) ScriptingEngine.inlineScriptRun(code, null,ShellType.GROOVY);
 println "Generating CAD"
-return cadGen.generateBody(base,false)
+return cadGen.generateBody(base)
