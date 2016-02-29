@@ -12,20 +12,19 @@ File servoFile = ScriptingEngine.fileFromGit(
 CSG servo  = Vitamins.get(servoFile);
 return new ICadGenerator(){
 	@Override 
-	public ArrayList<CSG> generateCad(DHParameterKinematics d, boolean toManufacture ) {
-		ArrayList<DHLink> dhLinks = d.getChain().getLinks();
-		ArrayList<CSG> allCad=new ArrayList<>();
+	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
+		ArrayList<DHLink> dhLinks = d.getChain().getLinks()
+		ArrayList<CSG> allCad=new ArrayList<>()
 		int i=0;
-		for(DHLink dh:dhLinks){
-			CSG tmpSrv = servo.clone();
-			tmpSrv.setManipulator(dh.getListener());
-			allCad.add(tmpSrv)
-			println "Generating link: "+(i++)
-		}
+		DHLink dh = dhLinks.get(linkIndex)
+		CSG tmpSrv = servo.clone()
+		tmpSrv.setManipulator(dh.getListener())
+		allCad.add(tmpSrv)
+		println "Generating link: "+(i++)
 		return allCad;
 	}
 	@Override 
-	public ArrayList<CSG> generateBody(MobileBase b, boolean toManufacture ) {
+	public ArrayList<CSG> generateBody(MobileBase b ) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		double size =40;
 		CSG r2d2 = new Cube(	size,// X dimention
