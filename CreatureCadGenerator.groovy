@@ -15,8 +15,13 @@ if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==nul
 
 base.setGitCadEngine(["https://gist.github.com/e54cfebe4f55fb0549dd.git","ExampleCadGenerator.groovy"]as String[])
 cad = base.getGitCadEngine();
-File code = ScriptingEngine.fileFromGit(cad[0],cad[1]);
-ICadGenerator cadGen =  (ICadGenerator) ScriptingEngine.inlineScriptRun(code, null,ShellType.GROOVY);
+
+ICadGenerator cadGen =  (ICadGenerator) ScriptingEngine
+					 .gitScriptRun(
+            cad[0], // git location of the library
+            cad[1] , // file to load
+            null// no parameters (see next tutorial)
+            );
 println "Generating CAD"
 
 return null;
