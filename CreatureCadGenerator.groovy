@@ -16,8 +16,6 @@ if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==nul
 
 def script = ["https://gist.github.com/e54cfebe4f55fb0549dd.git","ExampleCadGenerator.groovy"]as String[]
 base.setGitCadEngine(script)
-base.getGitCadEngine();
-
 for(DHParameterKinematics appendge: base.getAllDHChains()){
 	appendge.setGitCadEngine(script)
 }
