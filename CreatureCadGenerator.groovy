@@ -6,22 +6,20 @@ String xmlContent = ScriptingEngine.codeFromGistID("bcb4760a449190206170","CarlT
 println "Loading the robot"
 MobileBase base=null;
 if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==null){
-	BowlerStudio.speak("I did not fine a device called CarlTheWalkingRobot. Connecting CarlTheWalkingRobot.");
+	BowlerStudio.speak("Connecting CarlTheWalkingRobot.");
 	base = new MobileBase(IOUtils.toInputStream(xmlContent, "UTF-8"));
 	DeviceManager.addConnection(base,"CarlTheWalkingRobot");
 }else{
 	base = (MobileBase)DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot");
 }
 
-base.setGitCadEngine(["https://gist.github.com/e54cfebe4f55fb0549dd.git","ExampleCadGenerator.groovy"]as String[])
-cad = base.getGitCadEngine();
 
-ICadGenerator cadGen =  (ICadGenerator) ScriptingEngine
-					 .gitScriptRun(
-            cad[0], // git location of the library
-            cad[1] , // file to load
-            null// no parameters (see next tutorial)
-            );
-println "Generating CAD"
+def script = ["https://gist.github.com/e54cfebe4f55fb0549dd.git","ExampleCadGenerator.groovy"]as String[]
+base.setGitCadEngine(script)
+base.getGitCadEngine();
+
+for(DHParameterKinematics appendge: base.getAllDHChains()){
+	appendge.setGitCadEngine(script)
+}
 
 return null;
