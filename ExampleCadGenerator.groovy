@@ -5,11 +5,7 @@ import com.neuronrobotics.bowlerstudio.vitamins.*;
 println "Loading STL file"
 // Load an STL file from a git repo
 // Loading a local file also works here
-File servoFile = ScriptingEngine.fileFromGit(
-	"https://github.com/NeuronRobotics/BowlerStudioVitamins.git",
-	"BowlerStudioVitamins/stl/servo/smallservo.stl");
-// Load the .CSG from the disk and cache it in memory
-CSG servo  = Vitamins.get(servoFile);
+
 return new ICadGenerator(){
 	@Override 
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
@@ -23,7 +19,10 @@ return new ICadGenerator(){
 		AbstractLink abstractLink = d.getAbstractLink(i);// Transform used by the UI to render the location of the object
 		// Transform used by the UI to render the location of the object
 		Affine manipulator = dh.getListener();
-		CSG tmpSrv = servo.clone()
+		// loading the vitamins referenced in the configuration
+		CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+		
+		CSG tmpSrv = servo
 					.rotx(-Math.toDegrees(dh.getAlpha()))
 					.rotz(-Math.toDegrees(dh.getTheta()))
 					.movex(-dh.getR())
