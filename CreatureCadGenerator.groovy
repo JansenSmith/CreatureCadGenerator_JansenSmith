@@ -2,7 +2,9 @@ import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
 import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
 import org.apache.commons.io.IOUtils;
 //Create the kinematics model from the xml file describing the D-H compliant parameters. 
-String xmlContent = ScriptingEngine.codeFromGistID("bcb4760a449190206170","CarlTheRobot.xml")[0];
+def file=["https://github.com/madhephaestus/carl-the-hexapod.git","CarlTheRobot.xml"]as String[]
+String xmlContent = ScriptingEngine.codeFromGit(file[0],file[1])[0]
+
 println "Loading the robot"
 MobileBase base=null;
 if(DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot")==null){
