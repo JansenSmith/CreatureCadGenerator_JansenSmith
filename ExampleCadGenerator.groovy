@@ -9,6 +9,19 @@ import javafx.scene.transform.Affine;
 println "Loading STL file"
 // Load an STL file from a git repo
 // Loading a local file also works here
+CSG reverseDHValues(CSG incoming,DHLink dh ){
+	println "Reversing "+dh
+	TransformNR step = new TransformNR(dh.DhStep(0))
+	Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
+	return incoming.transformed(move)
+}
+
+CSG moveDHValues(CSG incoming,DHLink dh ){
+	TransformNR step = new TransformNR(dh.DhStep(0)).inverse()
+	Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
+	return incoming.transformed(move)
+	
+}
 
 return new ICadGenerator(){
 	@Override 
@@ -20,17 +33,14 @@ return new ICadGenerator(){
 		// Hardware to engineering units configuration
 		LinkConfiguration conf = d.getLinkConfiguration(i);
 		// Engineering units to kinematics link (limits and hardware type abstraction)
-		AbstractLink abstractLink = d.getAbstractLink(i);// Transform used by the UI to render the location of the object
+		AbstractLink abstractLink = d.getAbstractLink(i);
 		// Transform used by the UI to render the location of the object
 		Affine manipulator = dh.getListener();
 		// loading the vitamins referenced in the configuration
 		CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		
-		CSG tmpSrv = servo
-					.rotx(-Math.toDegrees(dh.getAlpha()))
-					.rotz(-Math.toDegrees(dh.getTheta()))
-					.movex(-dh.getR())
-					.movez(-dh.getD())
+		CSG tmpSrv = moveDHValues(servo,dh)
+		
 		tmpSrv.setManipulator(manipulator)
 		allCad.add(tmpSrv)
 		println "Generating link: "+linkIndex
