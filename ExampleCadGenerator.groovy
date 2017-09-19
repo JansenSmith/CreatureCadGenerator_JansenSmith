@@ -40,6 +40,11 @@ return new ICadGenerator(){
 		CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		
 		CSG tmpSrv = moveDHValues(servo,dh)
+
+		//Compute the location of the base of this limb to place objects at the root of the limb
+		TransformNR step = d.getRobotToFiducialTransform()
+		Transform locationOfBaseOfLimb = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
+		
 		
 		tmpSrv.setManipulator(manipulator)
 		allCad.add(tmpSrv)
